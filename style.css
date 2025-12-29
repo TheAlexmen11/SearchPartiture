@@ -1,0 +1,166 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+.search-box {
+  background: white;
+  border-radius: 50px;
+  padding: 15px 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-icon {
+  color: #667eea;
+  font-size: 1.3em;
+}
+
+#buscar {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.1em;
+  color: #333;
+}
+
+#buscar::placeholder {
+  color: #999;
+}
+
+.contador {
+  background: rgba(255,255,255,0.9);
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+  color: #667eea;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#lista {
+  list-style: none;
+}
+
+#lista li {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#lista li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.partitura-nombre {
+  flex: 1;
+  font-size: 1.05em;
+  color: #333;
+  font-weight: 500;
+}
+
+.btn-descargar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 10px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.btn-descargar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+}
+
+.sin-resultados {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.sin-resultados-icon {
+  font-size: 4em;
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
+
+.sin-resultados h3 {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.sin-resultados p {
+  color: #999;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: white;
+  font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  #lista li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-descargar {
+    width: 100%;
+    text-align: center;
+  }
+}
