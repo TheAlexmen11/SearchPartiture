@@ -1,5 +1,11 @@
+// ===============================
+// app.js - Buscador de Partituras
+// Versión PRO (normaliza texto)
+// ===============================
+
 let partituras = [];
 
+// Cargar datos desde data.json
 fetch("data.json")
   .then(r => r.json())
   .then(d => {
@@ -9,12 +15,26 @@ fetch("data.json")
   })
   .catch(err => {
     console.error("Error al cargar partituras:", err);
-    document.getElementById("contador").textContent =
-      "Error al cargar partituras";
+    const contador = document.getElementById("contador");
+    if (contador) {
+      contador.textContent = "Error al cargar partituras";
+    }
   });
 
+// Normaliza texto: quita tildes, mayúsculas, etc.
+function normalizar(texto) {
+  return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9 ]/g, " ");
+}
+
+// Muestra la lista de partituras
 function mostrar(datos) {
   const ul = document.getElementById("lista");
+
+  if (!ul) return;
 
   if (datos.length === 0) {
     ul.innerHTML = `
@@ -41,8 +61,10 @@ function mostrar(datos) {
   });
 }
 
+// Actualiza el contador de resultados
 function actualizarContador(cantidad) {
   const contador = document.getElementById("contador");
+  if (!contador) return;
 
   if (cantidad === 0) {
     contador.textContent = "No hay partituras disponibles";
@@ -53,11 +75,18 @@ function actualizarContador(cantidad) {
   }
 }
 
+// Evento de búsqueda
 document.getElementById("buscar").addEventListener("input", e => {
-  const texto = e.target.value.toLowerCase();
-  const filtrado = partituras.filter(p =>
-    p.nombre.toLowerCase().includes(texto)
-  );
+  const texto = normalizar(e.target.value);
+
+  const palabras = texto.split(" ").filter(p => p !== "");
+
+  const filtrado = partituras.filter(p => {
+    const nombre = normalizar(p.nombre);
+    return palabras.every(palabra => nombre.includes(palabra));
+  });
+  
+
   mostrar(filtrado);
   actualizarContador(filtrado.length);
 });
